@@ -1,0 +1,17 @@
+pairs:
+  rn: Roger Neel
+  ac: Andrew Cantino; andrew
+  jm: Jeff Moore
+  cad: Chris Alvarado-Dryden
+  ml: Matthew LaRocca
+  sa: Sufyan Adam
+  bb: Bobby Brown
+  al: Andrew Langdon
+  kd: Katlyn Daniluk
+  jc: Juan-Carlos Medina
+  rg: Reid Gillette
+  aj: Alec Jacobs 	
+email:
+  prefix: pair
+  domain: mavenlink.com
+global: true
