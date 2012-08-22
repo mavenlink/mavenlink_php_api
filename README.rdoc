@@ -12,10 +12,10 @@ We have full {REST API and Ruby client documentation on the wiki}[https://github
 
 require 'mavenlink_api.php'
 
-$brain = new Brain(<user_id>, <api_token>);
+$mavenlinkApi = new MavenlinkApi(<user_id>, <api_token>);
 
 //Get workspaces
-$workspaces_json = $brain->Get_workspaces());
+$workspaces_json = $mavenlinkApi->Get_workspaces());
 
 $workspaces = json_decode($workspaces_json);
 
