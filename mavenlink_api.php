@@ -7,7 +7,7 @@ if (!function_exists('curl_init'))
 
 require_once 'classes.php';
 
-class Brain
+class MavenlinkApi
 {
   private static $devMode   = true;
   private $loginInfo = null;
