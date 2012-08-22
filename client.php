@@ -1,6 +1,6 @@
 <?php
 
-require 'mavenlink_api.php';
+require_once 'mavenlink_api.php';
 
 $brain = new Brain(1923189, 'beab98f1-e154-8b75-61fd-6e59347d46b7');
 

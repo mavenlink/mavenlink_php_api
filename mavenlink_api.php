@@ -1,6 +1,11 @@
 <?php
 
-require 'classes.php';
+if (!function_exists('curl_init'))
+{
+  throw new Exception('Mavenlink PHP API Client requires the CURL PHP extension');
+}
+
+require_once 'classes.php';
 
 class Brain
 {
