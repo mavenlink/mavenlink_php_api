@@ -9,7 +9,7 @@ require_once 'classes.php';
 
 class Brain
 {
-  private static $dev_mode = true;
+  private static $dev_mode   = true;
   private $login_info = null;
 
   function __construct($user_id, $api_token, $production = false)
@@ -93,7 +93,7 @@ class Brain
   function Create_new($item, $workspace_id, $params)
   {
     $new_path = $item::Get_path_for_new($workspace_id);
-    $curl = $this->Create_post_request($new_path, $this->login_info, $params);
+    $curl     = $this->Create_post_request($new_path, $this->login_info, $params);
     $response = curl_exec($curl);
 
     return $response;
@@ -115,10 +115,10 @@ class Brain
   function Get_curl_handle($url, $access_credentials)
   {
     $curl_options = array
-        (
-        CURLOPT_URL => $url,
-        CURLOPT_USERPWD => $access_credentials,
-        CURLOPT_RETURNTRANSFER => TRUE
+    (
+      CURLOPT_URL            => $url,
+      CURLOPT_USERPWD        => $access_credentials,
+      CURLOPT_RETURNTRANSFER => TRUE
     );
 
     $curl_handle = curl_init();
@@ -132,5 +132,4 @@ class Brain
     return $curl_handle;
   }
 }
-
 ?>
