@@ -9,127 +9,127 @@ require_once 'classes.php';
 
 class Brain
 {
-  private static $dev_mode   = true;
-  private $login_info = null;
+  private static $devMode   = true;
+  private $loginInfo = null;
 
-  function __construct($user_id, $api_token, $production = false)
+  function __construct($userId, $apiToken, $production = false)
   {
-    $this->login_info = $user_id . ':' . $api_token;
+    $this->loginInfo = $userId . ':' . $apiToken;
 
     if ($production)
     {
-      self::$dev_mode = false;
+      self::$devMode = false;
     }
   }
 
-  function Get_workspaces()
+  function getWorkspaces()
   {
-    return $this->Get_json_for(Workspace);
+    return $this->getJsonFor(Workspace);
   }
 
-  function Get_events()
+  function getEvents()
   {
-    return $this->Get_json_for(Event);
+    return $this->getJsonFor(Event);
   }
 
-  function Get_time_entries()
+  function getTimeEntries()
   {
-    return $this->Get_json_for(TimeEntry);
+    return $this->getJsonFor(TimeEntry);
   }
 
-  function Get_expenses()
+  function getExpenses()
   {
-    return $this->Get_json_for(Expense);
+    return $this->getJsonFor(Expense);
   }
 
-  function Get_invoices()
+  function getInvoices()
   {
-    return $this->Get_json_for(Invoice);
+    return $this->getJsonFor(Invoice);
   }
 
-  function Get_stories()
+  function getStories()
   {
-    return $this->Get_json_for(Story);
+    return $this->getJsonFor(Story);
   }
 
-  function Get_users()
+  function getUsers()
   {
-    return $this->Get_json_for(User);
+    return $this->getJsonFor(User);
   }
 
-  function Create_post_for_workspace($workspace_id, $post_array)
+  function createPostForWorkspace($workspaceId, $postArray)
   {
-    return $this->Create_new(Post, $workspace_id, $post_array);
+    return $this->createNew(Post, $workspaceId, $postArray);
   }
 
-  function Create_story_for_workspace($workspace_id, $story_array)
+  function createStoryForWorkspace($workspaceId, $storyArray)
   {
-    return $this->Create_new(Story, $workspace_id, $story_array);
+    return $this->createNew(Story, $workspaceId, $storyArray);
   }
 
-  function Create_time_entry_for_workspace($workspace_id, $time_entry_array)
+  function createTimeEntryForWorkspace($workspaceId, $timeEntryArray)
   {
-    return $this->Create_new(TimeEntry, $workspace_id, $time_entry_array);
+    return $this->createNew(TimeEntry, $workspaceId, $timeEntryArray);
   }
 
-  function Create_expense_for_workspace($workspace_id, $expense_array)
+  function createExpenseForWorkspace($workspaceId, $expenseArray)
   {
-    return $this->Create_new(Expense, $workspace_id, $expense_array);
+    return $this->createNew(Expense, $workspaceId, $expenseArray);
   }
 
-  function Get_json_for($item)
+  function getJsonFor($item)
   {
-    $path_property = new \ReflectionProperty($item, 'path');
+    $pathProperty = new \ReflectionProperty($item, 'path');
 
-    $item_path = $this->Get_base_uri() . $path_property->getValue();
+    $itemPath = $this->getBaseUri() . $pathProperty->getValue();
 
-    $curl = $this->Get_curl_handle($item_path, $this->login_info);
+    $curl = $this->getCurlHandle($itemPath, $this->loginInfo);
 
     $json = curl_exec($curl);
 
     return $json;
   }
 
-  function Create_new($item, $workspace_id, $params)
+  function createNew($item, $workspaceId, $params)
   {
-    $new_path = $item::Get_path_for_new($workspace_id);
-    $curl     = $this->Create_post_request($new_path, $this->login_info, $params);
+    $newPath = $item::getPathForNew($workspaceId);
+    $curl     = $this->createPostRequest($newPath, $this->loginInfo, $params);
     $response = curl_exec($curl);
 
     return $response;
   }
 
-  function Create_post_request($url, $access_credentials, $params)
+  function createPostRequest($url, $accessCredentials, $params)
   {
-    $curl_handle = $this->Get_curl_handle($url, $access_credentials);
-    curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $params);
+    $curlHandle = $this->getCurlHandle($url, $accessCredentials);
+    curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $params);
 
-    return $curl_handle;
+    return $curlHandle;
   }
 
-  public static function Get_base_uri()
+  public static function getBaseUri()
   {
-    return self::$dev_mode ? 'https://mavenlink.local/api/v0/' : 'https://www.mavenlink.com/api/v0/';
+    return self::$devMode ? 'https://mavenlink.local/api/v0/' : 'https://www.mavenlink.com/api/v0/';
   }
 
-  function Get_curl_handle($url, $access_credentials)
+  function getCurlHandle($url, $accessCredentials)
   {
-    $curl_options = array
+    $curlOptions = array
     (
       CURLOPT_URL            => $url,
-      CURLOPT_USERPWD        => $access_credentials,
+      CURLOPT_USERPWD        => $accessCredentials,
       CURLOPT_RETURNTRANSFER => TRUE
     );
 
-    $curl_handle = curl_init();
-    curl_setopt_array($curl_handle, $curl_options);
+    $curlHandle = curl_init();
+    curl_setopt_array($curlHandle, $curlOptions);
 
-    if (self::$dev_mode)
+    if (self::$devMode)
     {
-      curl_setopt($curl_handle, CURLOPT_SSL_VERIFYHOST, 0);
+      curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 0);
     }
 
-    return $curl_handle;
+    return $curlHandle;
   }
 }
 ?>

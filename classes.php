@@ -2,14 +2,14 @@
 
 class WorkspaceObject
 {
-  public static function Path()
+  public static function path()
   {
     return static::$path;
   }
   
-  public static function Get_path_for_new($workspace_id)
+  public static function getPathForNew($workspace_id)
   {
-    return Brain::Get_base_uri() . "workspaces/$workspace_id/" . self::Path();
+    return Brain::getBaseUri() . "workspaces/$workspace_id/" . self::Path();
   }
 }
 
