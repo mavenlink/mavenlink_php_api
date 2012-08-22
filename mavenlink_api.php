@@ -9,8 +9,8 @@ require_once 'classes.php';
 
 class Brain
 {
-  private $login_info = null;
   private static $dev_mode = true;
+  private $login_info = null;
 
   function __construct($user_id, $api_token, $production = false)
   {
