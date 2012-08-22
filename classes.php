@@ -9,7 +9,7 @@ class WorkspaceObject
   
   public static function Get_path_for_new($workspace_id)
   {
-    return MavenlinkApi\Brain::Get_base_uri() . "workspaces/$workspace_id/" . self::Path();
+    return Brain::Get_base_uri() . "workspaces/$workspace_id/" . self::Path();
   }
 }
 
