@@ -52,9 +52,4 @@ class Post extends WorkspaceObject
 {
   public static $path = 'posts.json';
 }
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 ?>
