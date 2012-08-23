@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <body>
-
 <?php
 
 require '../mavenlink_api.php';
@@ -21,5 +17,3 @@ echo '</ul>';
 setlocale(LC_MONETARY, 'en_US');
 echo '<br><br><h3> Total Project Budgets: ' . money_format('%i', $totalBudget/100);
 ?>
-  </body>    
-</html>
