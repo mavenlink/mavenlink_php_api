@@ -1,55 +1,65 @@
 <?php
 
-class WorkspaceObject
+class MavenlinkApiObject
 {
   public static function path()
   {
     return static::$path;
   }
-  
-  public static function getPathForNew($workspace_id)
+
+  public static function getResourcesPath()
   {
-    return Brain::getBaseUri() . "workspaces/$workspace_id/" . self::Path();
+    return MavenlinkApi::getBaseUri() . self::path() . ".json";
+  }
+
+  public static function getResourcePath($resource_id)
+  {
+    return MavenlinkApi::getBaseUri() . self::path() . "/$resource_id" . ".json";
+  }
+
+  public static function getWorkspaceResourcePath($workspace_id)
+  {
+    return MavenlinkApi::getBaseUri() . "workspaces/$workspace_id/" . self::path() . ".json";
   }
 }
 
-class Workspace
+class Workspace extends MavenlinkApiObject
 {
-  public static $path = 'workspaces.json';
+  public static $path = 'workspaces';
 }
 
-class Event
+class Event extends MavenlinkApiObject
 {
-  public static $path = 'events.json';
+  public static $path = 'events';
 }
 
-class User
+class User extends MavenlinkApiObject
 {
-  public static $path = 'users.json';
+  public static $path = 'users';
 }
 
-class Invoice
+class Invoice extends MavenlinkApiObject
 {
-  public static $path = 'invoices.json';
+  public static $path = 'invoices';
 }
 
-class TimeEntry extends WorkspaceObject
+class TimeEntry extends MavenlinkApiObject
 {
-  public static $path = 'time_entries.json';
+  public static $path = 'time_entries';
 }
 
-class Expense extends WorkspaceObject
+class Expense extends MavenlinkApiObject
 {
-  public static $path = 'expenses.json';
+  public static $path = 'expenses';
 }
 
-class Story extends WorkspaceObject
+class Story extends MavenlinkApiObject
 {
-  public static $path = 'stories.json';
+  public static $path = 'stories';
 }
 
-class Post extends WorkspaceObject
+class Post extends MavenlinkApiObject
 {
-  public static $path = 'posts.json';
+  public static $path = 'posts';
 }
 ?>

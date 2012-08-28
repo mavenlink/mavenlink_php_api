@@ -24,66 +24,119 @@ class MavenlinkApi
 
   function getWorkspaces()
   {
-    return $this->getJsonFor(Workspace);
+    return $this->getJsonForAll(Workspace);
   }
 
   function getEvents()
   {
-    return $this->getJsonFor(Event);
+    return $this->getJsonForAll(Event);
   }
 
   function getTimeEntries()
   {
-    return $this->getJsonFor(TimeEntry);
+    return $this->getJsonForAll(TimeEntry);
   }
 
   function getExpenses()
   {
-    return $this->getJsonFor(Expense);
+    return $this->getJsonForAll(Expense);
   }
 
   function getInvoices()
   {
-    return $this->getJsonFor(Invoice);
+    return $this->getJsonForAll(Invoice);
   }
 
   function getStories()
   {
-    return $this->getJsonFor(Story);
+    return $this->getJsonForAll(Story);
   }
 
   function getUsers()
   {
-    return $this->getJsonFor(User);
+    return $this->getJsonForAll(User);
   }
 
-  function createPostForWorkspace($workspaceId, $postArray)
+  function getWorkspace($id)
   {
-    return $this->createNew(Post, $workspaceId, $postArray);
+    return $this->getShowJsonFor(Workspace, $id);
   }
 
-  function createStoryForWorkspace($workspaceId, $storyArray)
+  function getTimeEntry($id)
   {
-    return $this->createNew(Story, $workspaceId, $storyArray);
+    return $this->getShowJsonFor(TimeEntry, $id);
   }
 
-  function createTimeEntryForWorkspace($workspaceId, $timeEntryArray)
+  function getExpense($id)
   {
-    return $this->createNew(TimeEntry, $workspaceId, $timeEntryArray);
+    return $this->getShowJsonFor(Expense, $id);
   }
 
-  function createExpenseForWorkspace($workspaceId, $expenseArray)
+  function getInvoice($id)
   {
-    return $this->createNew(Expense, $workspaceId, $expenseArray);
+    return $this->getShowJsonFor(Invoice, $id);
   }
 
-  function getJsonFor($item)
+  function getStory($id)
   {
-    $pathProperty = new \ReflectionProperty($item, 'path');
+    return $this->getShowJsonFor(Story, $id);
+  }
 
-    $itemPath = $this->getBaseUri() . $pathProperty->getValue();
+  function createPostForWorkspace($workspaceId, $postParamsArray)
+  {
+    return $this->createNew(Post, $workspaceId, $postParamsArray);
+  }
 
-    $curl = $this->getCurlHandle($itemPath, $this->loginInfo);
+  function getAllPostsFromWorkspace($workspaceId)
+  {
+    return $this->getJson(Post::getWorkspaceResourcePath($workspaceId));
+  }
+
+  function createStoryForWorkspace($workspaceId, $storyParamsArray)
+  {
+    return $this->createNew(Story, $workspaceId, $storyParamsArray);
+  }
+
+  function getAllStoriesFromWorkspace($workspaceId)
+  {
+    return $this->getJson(Story::getWorkspaceResourcePath($workspaceId));
+  }
+
+  function createTimeEntryForWorkspace($workspaceId, $timeEntryParamsArray)
+  {
+    return $this->createNew(TimeEntry, $workspaceId, $timeEntryParamsArray);
+  }
+
+  function getAllTimeEntriesFromWorkspace($workspaceId)
+  {
+    return $this->getJson(TimeEntry::getWorkspaceResourcePath($workspaceId));
+  }
+
+  function createExpenseForWorkspace($workspaceId, $expenseParamsArray)
+  {
+    return $this->createNew(Expense, $workspaceId, $expenseParamsArray);
+  }
+
+  function getAllExpensesFromWorkspace($workspaceId)
+  {
+    return $this->getJson(Expense::getWorkspaceResourcePath($workspaceId));
+  }
+
+  function getJsonForAll($model)
+  {
+    $resourcesPath = $model::getResourcesPath();
+    return $this->getJson($resourcesPath);
+  }
+
+  function getShowJsonFor($model, $id)
+  {
+    $resourcePath = $model::getResourcePath($id);
+    return $this->getJson($resourcePath);
+  }
+
+  function getJson($path)
+  {
+    $curl = $this->getCurlHandle($path, $this->loginInfo);
 
     $json = curl_exec($curl);
 
@@ -92,7 +145,7 @@ class MavenlinkApi
 
   function createNew($item, $workspaceId, $params)
   {
-    $newPath = $item::getPathForNew($workspaceId);
+    $newPath = $item::getWorkspaceResourcePath($workspaceId);
     $curl     = $this->createPostRequest($newPath, $this->loginInfo, $params);
     $response = curl_exec($curl);
 
@@ -132,5 +185,4 @@ class MavenlinkApi
     return $curlHandle;
   }
 }
-
 ?>

@@ -11,8 +11,8 @@ echo '<ul>';
 $totalBudget = 0;
 
 foreach ($workspacesDecodedJson as $workspace) {
-	echo '<li>' . $workspace[title] . '<br /> Budget: ' . $workspace[price] . '<br /><br /></li>';
-	$totalBudget = $totalBudget + $workspace[price_in_cents];
+        echo '<li>' . $workspace[title] . '<br /> Budget: ' . $workspace[price] . '<br /><br /></li>';
+        $totalBudget = $totalBudget + $workspace[price_in_cents];
 }
 echo '</ul>';
 setlocale(LC_MONETARY, 'en_US');
