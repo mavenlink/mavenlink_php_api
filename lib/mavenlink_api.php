@@ -9,10 +9,10 @@ require_once 'classes.php';
 
 class MavenlinkApi
 {
-  private static $devMode   = true;
+  private static $devMode = true;
   private $loginInfo = null;
 
-  function __construct($userId, $apiToken, $production = false)
+  function __construct($userId, $apiToken, $production = true)
   {
     $this->loginInfo = $userId . ':' . $apiToken;
 
@@ -132,4 +132,5 @@ class MavenlinkApi
     return $curlHandle;
   }
 }
+
 ?>

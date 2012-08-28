@@ -1,8 +1,8 @@
 = Mavenlink PHP API Library
 
-The Mavenlink API provides programmatic access to many of Mavenlink's capabilities, including projects, posts, tasks, and time entries.  This is a full-featured PHP Library to the Mavenlink REST API.
-
 {Mavenlink's}[http://mavenlink.com] project collaboration suite allows you to manage your business relationships, share files, and track project activity online from anywhere in the world. Within a project workspace in Mavenlink, you can agree on budget & schedule, track time, send invoices, get paid via PayPal, and complete work.
+
+The Mavenlink API provides programmatic access to many of Mavenlink's capabilities, including projects, posts, tasks, and time entries.  This is a full-featured PHP Library to the Mavenlink REST API.
 
 == The REST API
 
@@ -10,15 +10,21 @@ We have full {REST API and Ruby client documentation on the wiki}[https://github
 
 == Example Usage
 
-require 'mavenlink_api.php'
+    require 'lib/mavenlink_api.php'
 
-$mavenlinkApi = new MavenlinkApi(<user_id>, <api_token>);
+    $mavenlinkApi = new MavenlinkApi(<user_id>, '<api_token>');
 
-//Get workspaces
-$workspaces_json = $mavenlinkApi->Get_workspaces());
+    // Get workspaces
+    $workspaces_son = $mavenlinkApi->getWorkspaces();
+    $workspaces = json_decode($workspaces_json);
 
-$workspaces = json_decode($workspaces_json);
+=== Example Script
 
+Try running our example:
+
+  1: Edit examples/api_example.php to include your Mavenlink User ID and API Token.
+  2: Run
+     php examples/api_example.php
 
 == Credentials
 
@@ -32,16 +38,14 @@ For security, the API is provided over SSL only.  Additionally, you should consi
 
 == Contributing to the Mavenlink PHP API Library
 
-We strive to keep the PHP API up-to-date with our REST API.  However, if you find a feature missing, feel free to contribute it. 
+We strive to keep the PHP API up-to-date with our REST API.  However, if you find a feature missing, feel free to contribute it.
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
 * Start a feature/bugfix branch
-* Write a failing rspec test case, write code until your test passes, rinse, repeat.
 * Commit and push until you are happy with your contribution
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or it is otherwise necessary, that is fine, but please isolate it to its own commit so that we can cherry-pick around it as needed.
 
 == Copyright
 
-Copyright (c) 2011 Mavenlink, LLC. See LICENSE.txt for further details.
+Copyright (c) 2012 Mavenlink, Inc. See LICENSE.txt for further details.
