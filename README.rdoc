@@ -15,16 +15,41 @@ We have full {REST API and Ruby client documentation on the wiki}[https://github
     $mavenlinkApi = new MavenlinkApi(<user_id>, '<api_token>');
 
     // Get workspaces
-    $workspaces_son = $mavenlinkApi->getWorkspaces();
+    $workspaces_json = $mavenlinkApi->getWorkspaces();
     $workspaces = json_decode($workspaces_json);
 
-=== Example Script
+    // Get a specific workspace
+    $workspace_json = $mavenlinkApi->getWorkspace(<workspace ID>);
 
-Try running our example:
+    // Get events
+    $events_json = $mavenlinkApi->getEvents();
 
-  1: Edit examples/api_example.php to include your Mavenlink User ID and API Token.
-  2: Run
-     php examples/api_example.php
+    // Create a post in a workspace (Please see the {REST API and Ruby client documentation on the wiki}[https://github.com/mavenlink/mavenlink_ruby_api/wiki] for valid parameters.)
+    $response = $mavenlinkApi->createPostForWorkspace(<Workspace ID>, array('post[message]' => 'Test message'))
+
+    // Update a post in a workspace
+    $response = $mavenlinkApi->updateWorkspacePost(8, 20, array("post[message]" => "Updated message"));
+
+    // Delete a workspace post
+    $response = $mavenlinkApi->deleteWorkspacePost(8, 19)
+
+    // Create a story in a workspace
+    $response = $mavenlinkApi->createStoryForWorkspace(8, array('story[title]' => 'Test story', 'story[story_type]' => 'deliverable'));
+    
+
+=== Example Scripts
+
+Try running our examples:
+
+    1: Edit examples/api_example.php to include your Mavenlink User ID and API Token.
+    2: Run
+       php examples/api_example.php
+       
+       or
+
+    1: Edit examples/test.php to include your Mavenlink User ID and API Token.
+    2: cd into examples and Run
+       php test.php
 
 == Credentials
 
