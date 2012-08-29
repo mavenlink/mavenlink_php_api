@@ -12,14 +12,19 @@ class MavenlinkApiObject
     return MavenlinkApi::getBaseUri() . self::path() . ".json";
   }
 
-  public static function getResourcePath($resource_id)
+  public static function getResourcePath($resourceId)
   {
-    return MavenlinkApi::getBaseUri() . self::path() . "/$resource_id" . ".json";
+    return MavenlinkApi::getBaseUri() . self::path() . "/$resourceId" . ".json";
   }
 
-  public static function getWorkspaceResourcePath($workspace_id)
+  public static function getWorkspaceResourcePath($workspaceId, $resourceId)
   {
-    return MavenlinkApi::getBaseUri() . "workspaces/$workspace_id/" . self::path() . ".json";
+    return MavenlinkApi::getBaseUri() . "workspaces/$workspaceId/" . self::path() . "/$resourceId.json";
+  }
+
+  public static function getWorkspaceResourcesPath($workspaceId)
+  {
+    return MavenlinkApi::getBaseUri() . "workspaces/$workspaceId/" . self::path() . ".json";
   }
 }
 
