@@ -1,7 +1,7 @@
 <?php
 require '../lib/mavenlink_api.php';
 
-$client = new MavenlinkApi(<user id>, <api token>);
+$client = new MavenlinkApi(31, "95bf241d-6be6-0dbe-f1a3-c54a48a6e6a2", false);
 
 // $workspacesJson = $client->getWorkspace(8);
 // print_r("workspaces....");
@@ -96,5 +96,12 @@ $client = new MavenlinkApi(<user id>, <api token>);
 // $response = $client->deleteWorkspaceStory(8, 10);
 // print_r($response);
 
+// get all invoices for workspace
+/* $response = $client->getAllInvoicesFromWorkspace(69); */
+/* print_r($response); */
+
+// get specific invoice
+$response = $client->getWorkspaceInvoice(69, 13);
+print_r($response);
 
 ?>

@@ -82,6 +82,16 @@ class MavenlinkApi
     return $this->getShowJsonFor(Story, $id);
   }
 
+  function getAllInvoicesFromWorkspace($workspaceId)
+  {
+    return $this->getJson(Invoice::getWorkspaceResourcesPath($workspaceId));
+  }
+
+  function getWorkspaceInvoice($workspaceId, $invoiceId)
+  {
+    return $this->getJson(Invoice::getWorkspaceResourcePath($workspaceId, $invoiceId));
+  }
+
   function getAllPostsFromWorkspace($workspaceId)
   {
     return $this->getJson(Post::getWorkspaceResourcesPath($workspaceId));
