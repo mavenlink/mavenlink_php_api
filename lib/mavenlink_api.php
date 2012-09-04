@@ -57,11 +57,6 @@ class MavenlinkApi
     return $this->getJsonForAll(User);
   }
 
-  function getWorkspace($id)
-  {
-    return $this->getShowJsonFor(Workspace, $id);
-  }
-
   function getTimeEntry($id)
   {
     return $this->getShowJsonFor(TimeEntry, $id);
@@ -80,6 +75,34 @@ class MavenlinkApi
   function getStory($id)
   {
     return $this->getShowJsonFor(Story, $id);
+  }
+
+  function getWorkspace($id)
+  {
+    return $this->getShowJsonFor(Workspace, $id);
+  }
+
+  function createWorkspace($workspaceParamsArray)
+  {
+    $newPath  = Workspace::getResourcesPath();
+    $curl     = $this->createPostRequest($newPath, $this->loginInfo, $workspaceParamsArray);
+    $response = curl_exec($curl);
+
+    return $response;
+  }
+
+  function updateWorkspace($workspaceId, $workspaceParamsArray)
+  {
+    $updatePath = Workspace::getResourcePath($workspaceId);
+    $curl       = $this->createPutRequest($updatePath, $this->loginInfo, $workspaceParamsArray);
+    $response   = curl_exec($curl);
+
+    return $response;
+  }
+
+  function getAllParticipantsFromWorkspace($workspaceId)
+  {
+    return $this->getJson(Participant::getWorkspaceResourcesPath($workspaceId));
   }
 
   function getAllInvoicesFromWorkspace($workspaceId)

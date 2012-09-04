@@ -1,7 +1,8 @@
 <?php
+
 require '../lib/mavenlink_api.php';
 
-$client = new MavenlinkApi(31, "95bf241d-6be6-0dbe-f1a3-c54a48a6e6a2", false);
+$client = new MavenlinkApi(<user_id>, <api_key>);
 
 // $workspacesJson = $client->getWorkspace(8);
 // print_r("workspaces....");
@@ -97,11 +98,23 @@ $client = new MavenlinkApi(31, "95bf241d-6be6-0dbe-f1a3-c54a48a6e6a2", false);
 // print_r($response);
 
 // get all invoices for workspace
-/* $response = $client->getAllInvoicesFromWorkspace(69); */
-/* print_r($response); */
+// $response = $client->getAllInvoicesFromWorkspace(8);
+// print_r($response);
 
 // get specific invoice
-$response = $client->getWorkspaceInvoice(69, 13);
-print_r($response);
+// $response = $client->getWorkspaceInvoice(69, 13);
+// print_r($response);
+
+// get workspace participants
+// $response = $client->getAllParticipantsFromWorkspace(8);
+// print_r($response);
+
+// create workspace
+//$response = $client->createWorkspace(array("workspace[title]" => "Using PHP functions", "workspace[creator_role]" => "maven"));
+//print_r($response);
+
+// update workspace
+//$response = $client->updateWorkspace(9, array("workspace[description]" => "hello"));
+//print_r($response);
 
 ?>
