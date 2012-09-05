@@ -117,4 +117,8 @@ $client = new MavenlinkApi(<user_id>, <api_key>);
 //$response = $client->updateWorkspace(9, array("workspace[description]" => "hello"));
 //print_r($response);
 
+//invite user
+//$response = $client->inviteToWorkspace(1167893, array("invitation[full_name]" => "Php Programmer", "invitation[email_address]" => "php_programmer@mavenlink.com", "invitation[invitee_role]" => "maven"));
+//print_r($response);
+
 ?>

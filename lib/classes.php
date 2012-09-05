@@ -33,6 +33,11 @@ class Workspace extends MavenlinkApiObject
   public static $path = 'workspaces';
 }
 
+class Invitation extends MavenlinkApiObject
+{
+  public static $path = 'invite';
+}
+
 class Participant extends MavenlinkApiObject
 {
   public static $path = 'participants';

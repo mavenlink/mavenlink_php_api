@@ -100,6 +100,11 @@ class MavenlinkApi
     return $response;
   }
 
+  function inviteToWorkspace($workspaceId, $invitationParamsArray)
+  {
+    return $this->createNew(Invitation, $workspaceId, $invitationParamsArray);
+  }
+
   function getAllParticipantsFromWorkspace($workspaceId)
   {
     return $this->getJson(Participant::getWorkspaceResourcesPath($workspaceId));
