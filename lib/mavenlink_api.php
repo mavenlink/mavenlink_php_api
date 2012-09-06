@@ -84,6 +84,7 @@ class MavenlinkApi
 
   function createWorkspace($workspaceParamsArray)
   {
+    $workspaceParamsArray = $this->labelParamKeys(Workspace, $workspaceParamsArray);
     $newPath  = Workspace::getResourcesPath();
     $curl     = $this->createPostRequest($newPath, $this->loginInfo, $workspaceParamsArray);
     $response = curl_exec($curl);
@@ -93,6 +94,8 @@ class MavenlinkApi
 
   function updateWorkspace($workspaceId, $workspaceParamsArray)
   {
+    $workspaceParamsArray = $this->labelParamKeys(Workspace, $workspaceParamsArray);
+
     $updatePath = Workspace::getResourcePath($workspaceId);
     $curl       = $this->createPutRequest($updatePath, $this->loginInfo, $workspaceParamsArray);
     $response   = curl_exec($curl);
@@ -243,6 +246,8 @@ class MavenlinkApi
 
   function createNew($model, $workspaceId, $params)
   {
+    $params = $this->labelParamKeys($model, $params);
+
     $newPath = $model::getWorkspaceResourcesPath($workspaceId);
     $curl     = $this->createPostRequest($newPath, $this->loginInfo, $params);
     $response = curl_exec($curl);
@@ -257,17 +262,33 @@ class MavenlinkApi
 
   function labelParamKeys($model, $paramsArray)
   {
-    $labelledArray = $paramsArray;
+    $labelledArray = array();
 
-    $wrapKeyFunc = function($key) {
-      return "[$key]";
-    };
+    foreach ($paramsArray as $key => $value) {
 
-    foreach ($labelledArray as $key => $value) {
-      $key = $wrapKeyFunc($key);
+      if ($this->keyAlreadyWrapped($model, $key))
+        {
+          $wrappedKey = strtolower($key);
+        }
+      else {
+
+        $wrappedKey = $this->wrapParamFor($model, $key);
+      }
+
+      $labelledArray[$wrappedKey] = $value;
     }
 
     return $labelledArray;
+  }
+
+  function keyAlreadyWrapped($object, $key)
+  {
+    $object = strtolower("$object");
+    $matchPattern = "$object" . "\[\w+\]";
+    $matchWrapped = 0;
+    $matchWrapped = preg_match("/$matchPattern/", $key);
+
+    return $matchWrapped == 1;
   }
 
   function updateModel($model, $workspaceId, $resourceId, $params)

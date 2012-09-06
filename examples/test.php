@@ -71,8 +71,8 @@ $client = new MavenlinkApi(<user_id>, <api_key>);
 
 // //create workspace post:
 
-// $response = $client->createPostForWorkspace(8, array('post[message]' => 'posting a message!!!'));
-// print_r($response);
+$response = $client->createPostForWorkspace(527968, array('message' => 'Wrapped Param!!!!'));
+ print_r($response);
 
 // //update post in workspace:
 // $response = $client->updateWorkspacePost(8, 20, array("post[message]" => "Updated message"));
@@ -110,7 +110,7 @@ $client = new MavenlinkApi(<user_id>, <api_key>);
 // print_r($response);
 
 // create workspace
-//$response = $client->createWorkspace(array("workspace[title]" => "Using PHP functions", "workspace[creator_role]" => "maven"));
+//$response = $client->createWorkspace(array("title" => "Learning Emacs", "creator_role" => "maven"));
 //print_r($response);
 
 // update workspace
