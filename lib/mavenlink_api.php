@@ -250,6 +250,26 @@ class MavenlinkApi
     return $response;
   }
 
+  function wrapParamFor($model, $arrayKey)
+  {
+    return strtolower("$model" . "[$arrayKey]");
+  }
+
+  function labelParamKeys($model, $paramsArray)
+  {
+    $labelledArray = $paramsArray;
+
+    $wrapKeyFunc = function($key) {
+      return "[$key]";
+    };
+
+    foreach ($labelledArray as $key => $value) {
+      $key = $wrapKeyFunc($key);
+    }
+
+    return $labelledArray;
+  }
+
   function updateModel($model, $workspaceId, $resourceId, $params)
   {
     $updatePath = $model::getWorkspaceResourcePath($workspaceId, $resourceId);
