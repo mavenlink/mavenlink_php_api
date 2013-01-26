@@ -19,6 +19,8 @@ class TestOfMavenlinkApi extends UnitTestCase
     $apiObj = new MavenlinkApi(null, null);
     $this->assertTrue($apiObj->keyAlreadyWrapped(Post, "post[message]"));
     $this->assertFalse($apiObj->keyAlreadyWrapped(Post, "message"));
+	$this->assertTrue($apiObj->keyAlreadyWrapped(TimeEntry, "time_entry[date_performed]"));
+	$this->assertFalse($apiObj->keyAlreadyWrapped(TimeEntry, "date_performed"));
   }
 
   function testLabelParamKeysLabelsKeysNotAlreadyWrapped()
@@ -27,6 +29,10 @@ class TestOfMavenlinkApi extends UnitTestCase
     $apiObj = new MavenlinkApi(null, null);
 
     $this->assertEqual($apiObj->labelParamKeys(Post, $testArray), array("post[message]" => "Hi this is a test message", "post[subject_id]" => 45, "post[subject_type]" => "Post"));
+
+	$testArray = array("date_performed" => '01/01/2012', "time_entry[time_in_minutes]" => '200');
+
+	$this->assertEqual($apiObj->labelParamKeys(TimeEntry, $testArray), array("time_entry[date_performed]" => '01/01/2012', "time_entry[time_in_minutes]" => '200'));
   }
 }
 

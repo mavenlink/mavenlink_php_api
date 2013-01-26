@@ -257,7 +257,7 @@ class MavenlinkApi
 
   function wrapParamFor($model, $arrayKey)
   {
-    return strtolower("$model" . "[$arrayKey]");
+	return strtolower(preg_replace('/(?<=\\w)(?=[A-Z])/',"_$1", "$model") . "[$arrayKey]");
   }
 
   function labelParamKeys($model, $paramsArray)
@@ -283,7 +283,7 @@ class MavenlinkApi
 
   function keyAlreadyWrapped($object, $key)
   {
-    $object = strtolower("$object");
+	$object = strtolower(preg_replace('/(?<=\\w)(?=[A-Z])/',"_$1", "$object"));
     $matchPattern = "$object" . "\[\w+\]";
     $matchWrapped = 0;
     $matchWrapped = preg_match("/$matchPattern/", $key);
