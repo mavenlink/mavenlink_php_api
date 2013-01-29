@@ -24,67 +24,67 @@ class MavenlinkApi
 
   function getWorkspaces()
   {
-    return $this->getJsonForAll(Workspace);
+    return $this->getJsonForAll('Workspace');
   }
 
   function getEvents()
   {
-    return $this->getJsonForAll(Event);
+      return $this->getJsonForAll('Event');
   }
 
   function getTimeEntries()
   {
-    return $this->getJsonForAll(TimeEntry);
+    return $this->getJsonForAll('TimeEntry');
   }
 
   function getExpenses()
   {
-    return $this->getJsonForAll(Expense);
+    return $this->getJsonForAll('Expense');
   }
 
   function getInvoices()
   {
-    return $this->getJsonForAll(Invoice);
+    return $this->getJsonForAll('Invoice');
   }
 
   function getStories()
   {
-    return $this->getJsonForAll(Story);
+    return $this->getJsonForAll('Story');
   }
 
   function getUsers()
   {
-    return $this->getJsonForAll(User);
+    return $this->getJsonForAll('User');
   }
 
   function getTimeEntry($id)
   {
-    return $this->getShowJsonFor(TimeEntry, $id);
+    return $this->getShowJsonFor('TimeEntry', $id);
   }
 
   function getExpense($id)
   {
-    return $this->getShowJsonFor(Expense, $id);
+    return $this->getShowJsonFor('Expense', $id);
   }
 
   function getInvoice($id)
   {
-    return $this->getShowJsonFor(Invoice, $id);
+    return $this->getShowJsonFor('Invoice', $id);
   }
 
   function getStory($id)
   {
-    return $this->getShowJsonFor(Story, $id);
+    return $this->getShowJsonFor('Story', $id);
   }
 
   function getWorkspace($id)
   {
-    return $this->getShowJsonFor(Workspace, $id);
+    return $this->getShowJsonFor('Workspace', $id);
   }
 
   function createWorkspace($workspaceParamsArray)
   {
-    $workspaceParamsArray = $this->labelParamKeys(Workspace, $workspaceParamsArray);
+    $workspaceParamsArray = $this->labelParamKeys('Workspace', $workspaceParamsArray);
     $newPath  = Workspace::getResourcesPath();
     $curl     = $this->createPostRequest($newPath, $this->loginInfo, $workspaceParamsArray);
     $response = curl_exec($curl);
@@ -94,7 +94,7 @@ class MavenlinkApi
 
   function updateWorkspace($workspaceId, $workspaceParamsArray)
   {
-    $workspaceParamsArray = $this->labelParamKeys(Workspace, $workspaceParamsArray);
+    $workspaceParamsArray = $this->labelParamKeys('Workspace', $workspaceParamsArray);
 
     $updatePath = Workspace::getResourcePath($workspaceId);
     $curl       = $this->createPutRequest($updatePath, $this->loginInfo, $workspaceParamsArray);
@@ -105,7 +105,7 @@ class MavenlinkApi
 
   function inviteToWorkspace($workspaceId, $invitationParamsArray)
   {
-    return $this->createNew(Invitation, $workspaceId, $invitationParamsArray);
+    return $this->createNew('Invitation', $workspaceId, $invitationParamsArray);
   }
 
   function getAllParticipantsFromWorkspace($workspaceId)
@@ -140,12 +140,12 @@ class MavenlinkApi
 
   function updateWorkspacePost($workspaceId, $postId, $updateParams)
   {
-    return $this->updateModel(Post, $workspaceId, $postId, $updateParams);
+    return $this->updateModel('Post', $workspaceId, $postId, $updateParams);
   }
 
   function deleteWorkspacePost($workspaceId, $postId)
   {
-    return $this->deleteModel(Post, $workspaceId, $postId);
+    return $this->deleteModel('Post', $workspaceId, $postId);
   }
 
   function getAllStoriesFromWorkspace($workspaceId)
@@ -155,7 +155,7 @@ class MavenlinkApi
 
   function createStoryForWorkspace($workspaceId, $storyParamsArray)
   {
-    return $this->createNew(Story, $workspaceId, $storyParamsArray);
+    return $this->createNew('Story', $workspaceId, $storyParamsArray);
   }
 
   function getWorkspaceStory($workspaceId, $storyId)
@@ -165,12 +165,12 @@ class MavenlinkApi
 
   function updateWorkspaceStory($workspaceId, $storyId, $updateParams)
   {
-    return $this->updateModel(Story, $workspaceId, $storyId, $updateParams);
+    return $this->updateModel('Story', $workspaceId, $storyId, $updateParams);
   }
 
   function deleteWorkspaceStory($workspaceId, $storyId)
   {
-    return $this->deleteModel(Story, $workspaceId, $storyId);
+    return $this->deleteModel('Story', $workspaceId, $storyId);
   }
 
   function getAllTimeEntriesFromWorkspace($workspaceId)
@@ -180,7 +180,7 @@ class MavenlinkApi
 
   function createTimeEntryForWorkspace($workspaceId, $timeEntryParamsArray)
   {
-    return $this->createNew(TimeEntry, $workspaceId, $timeEntryParamsArray);
+    return $this->createNew('TimeEntry', $workspaceId, $timeEntryParamsArray);
   }
 
   function getWorkspaceTimeEntry($workspaceId, $timeEntryId)
@@ -190,12 +190,12 @@ class MavenlinkApi
 
   function updateWorkspaceTimeEntry($workspaceId, $timeEntryId, $updateParams)
   {
-    return $this->updateModel(TimeEntry, $workspaceId, $timeEntryId, $updateParams);
+    return $this->updateModel('TimeEntry', $workspaceId, $timeEntryId, $updateParams);
   }
 
   function deleteWorkspaceTimeEntry($workspaceId, $timeEntryId)
   {
-    return $this->deleteModel(TimeEntry, $workspaceId, $timeEntryId);
+    return $this->deleteModel('TimeEntry', $workspaceId, $timeEntryId);
   }
 
   function getAllExpensesFromWorkspace($workspaceId)
@@ -205,7 +205,7 @@ class MavenlinkApi
 
   function createExpenseForWorkspace($workspaceId, $expenseParamsArray)
   {
-    return $this->createNew(Expense, $workspaceId, $expenseParamsArray);
+    return $this->createNew('Expense', $workspaceId, $expenseParamsArray);
   }
 
   function getWorkspaceExpense($workspaceId, $expenseId)
@@ -215,12 +215,12 @@ class MavenlinkApi
 
   function updateWorkspaceExpense($workspaceId, $expenseId, $updateParams)
   {
-    return $this->updateModel(Expense, $workspaceId, $expenseId, $updateParams);
+    return $this->updateModel('Expense', $workspaceId, $expenseId, $updateParams);
   }
 
   function deleteWorkspaceExpense($workspaceId, $expenseId)
   {
-    return $this->deleteModel(Expense, $workspaceId, $expenseId);
+    return $this->deleteModel('Expense', $workspaceId, $expenseId);
   }
 
   function getJsonForAll($model)
@@ -257,7 +257,7 @@ class MavenlinkApi
 
   function wrapParamFor($model, $arrayKey)
   {
-	return strtolower(preg_replace('/(?<=\\w)(?=[A-Z])/',"_$1", "$model") . "[$arrayKey]");
+    return strtolower(preg_replace('/(?<=\\w)(?=[A-Z])/',"_$1", "$model") . "[$arrayKey]");
   }
 
   function labelParamKeys($model, $paramsArray)
@@ -283,7 +283,7 @@ class MavenlinkApi
 
   function keyAlreadyWrapped($object, $key)
   {
-	$object = strtolower(preg_replace('/(?<=\\w)(?=[A-Z])/',"_$1", "$object"));
+    $object = strtolower(preg_replace('/(?<=\\w)(?=[A-Z])/',"_$1", "$object"));
     $matchPattern = "$object" . "\[\w+\]";
     $matchWrapped = 0;
     $matchWrapped = preg_match("/$matchPattern/", $key);
