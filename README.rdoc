@@ -1,3 +1,6 @@
+= Please note, this documentation is for the Mavenlink V0 API and is now deprecated. Please visit {developer.mavenlink.com}[http://developer.mavenlink.com] for our current documentation.
+
+
 = Mavenlink PHP API Library
 
 {Mavenlink's}[http://mavenlink.com] project collaboration suite allows you to manage your business relationships, share files, and track project activity online from anywhere in the world. Within a project workspace in Mavenlink, you can agree on budget & schedule, track time, send invoices, get paid via PayPal, and complete work.
