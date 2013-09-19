@@ -1,4 +1,4 @@
-= Please note, this documentation is for the Mavenlink V0 API and is now deprecated. Please visit {developer.mavenlink.com}[http://developer.mavenlink.com] for our current documentation.
+= Please note, this library is for the Mavenlink V0 API and is now deprecated. Please visit {developer.mavenlink.com}[http://developer.mavenlink.com] for our current documentation.  We are working on a new PHP library.  At the moment, please use our standard REST API as detailed in the documentation.
 
 
 = Mavenlink PHP API Library
