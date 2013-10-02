@@ -2,7 +2,7 @@
 
 require '../lib/mavenlink_api.php';
 
-$client = new MavenlinkApi(<user_id>, <api_key>);
+$client = new MavenlinkApi('<oauthTokenHere>', false);
 
 // $workspacesJson = $client->getWorkspace(8);
 // print_r("workspaces....");
@@ -71,8 +71,8 @@ $client = new MavenlinkApi(<user_id>, <api_key>);
 
 // //create workspace post:
 
-$response = $client->createPostForWorkspace(527968, array('message' => 'Wrapped Param!!!!'));
- print_r($response);
+//$response = $client->createPostForWorkspace(527968, array('message' => 'Wrapped Param!!!!'));
+// print_r($response);
 
 // //update post in workspace:
 // $response = $client->updateWorkspacePost(8, 20, array("post[message]" => "Updated message"));
@@ -121,4 +121,7 @@ $response = $client->createPostForWorkspace(527968, array('message' => 'Wrapped 
 //$response = $client->inviteToWorkspace(1167893, array("invitation[full_name]" => "Php Programmer", "invitation[email_address]" => "php_programmer@mavenlink.com", "invitation[invitee_role]" => "maven"));
 //print_r($response);
 
+//get all workspaces
+//$response = $client->getWorkspaces();
+//print_r($response);
 ?>
