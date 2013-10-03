@@ -12,9 +12,9 @@ class MavenlinkApi
   private static $devMode = true;
   private $loginInfo = null;
 
-  function __construct($userId, $apiToken, $production = true)
+  function __construct($oauthToken, $production = true)
   {
-    $this->loginInfo = $userId . ':' . $apiToken;
+    $this->loginInfo = $oauthToken;
 
     if ($production)
     {
@@ -246,9 +246,9 @@ class MavenlinkApi
 
   function createNew($model, $workspaceId, $params)
   {
-    $params = $this->labelParamKeys($model, $params);
+    $params = $this->labelParamKeys($model, array_merge($params, array('workspace_id' => $workspaceId)));
 
-    $newPath = $model::getWorkspaceResourcesPath($workspaceId);
+    $newPath = $model::getResourcesPath();
     $curl     = $this->createPostRequest($newPath, $this->loginInfo, $params);
     $response = curl_exec($curl);
 
@@ -336,7 +336,7 @@ class MavenlinkApi
 
   public static function getBaseUri()
   {
-    return self::$devMode ? 'https://mavenlink.local/api/v0/' : 'https://www.mavenlink.com/api/v0/';
+    return self::$devMode ? 'https://mavenlink.local/api/v1/' : 'https://api.mavenlink.com/api/v1/';
   }
 
   function getCurlHandle($url, $accessCredentials)
@@ -344,7 +344,7 @@ class MavenlinkApi
     $curlOptions = array
     (
       CURLOPT_URL            => $url,
-      CURLOPT_USERPWD        => $accessCredentials,
+      CURLOPT_HTTPHEADER     => array('Authorization: Bearer ' . $accessCredentials),
       CURLOPT_RETURNTRANSFER => TRUE
     );
 
