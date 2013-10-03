@@ -1,6 +1,3 @@
-= Please note, this library is for the Mavenlink V0 API and is now deprecated. Please visit {developer.mavenlink.com}[http://developer.mavenlink.com] for our current documentation.  We are working on a new PHP library.  At the moment, please use our standard REST API as detailed in the documentation.
-
-
 = Mavenlink PHP API Library
 
 {Mavenlink's}[http://mavenlink.com] project collaboration suite allows you to manage your business relationships, share files, and track project activity online from anywhere in the world. Within a project workspace in Mavenlink, you can agree on budget & schedule, track time, send invoices, get paid via PayPal, and complete work.
@@ -15,7 +12,7 @@ We have full {REST API and Ruby client documentation on the wiki}[https://github
 
     require 'lib/mavenlink_api.php'
 
-    $mavenlinkApi = new MavenlinkApi(<user_id>, '<api_token>');
+    $mavenlinkApi = new MavenlinkApi('<oauth_token>');
 
     // Get workspaces
     $workspaces_json = $mavenlinkApi->getWorkspaces();
@@ -44,25 +41,25 @@ We have full {REST API and Ruby client documentation on the wiki}[https://github
 
 Try running our examples:
 
-    1: Edit examples/api_example.php to include your Mavenlink User ID and API Token.
+    1: Edit examples/api_example.php to include your Mavenlink OAuth API Token.
     2: Run
        php examples/api_example.php
        
        or
 
-    1: Edit examples/test.php to include your Mavenlink User ID and API Token.
+    1: Edit examples/test.php to include your Mavenlink OAuth API Token.
     2: cd into examples and Run
        php test.php
 
 == Credentials
 
-=== Finding your User ID and API Token
+=== Finding your OAuth Token
 
-Your User ID and API Token are both available on your Mavenlink account page at the bottom of the first tab.
+Your OAuth API Token is available on your Mavenlink user settings page within the API tab. Follow the instructions to register your application and retrieve your OAuth token.
 
 === Security
 
-For security, the API is provided over SSL only.  Additionally, you should consider your API Token to be much like a password.  Someone with your token can make changes to your Mavenlink account and perform actions in your name.  If you believe that your token has been compromised, login to Mavenlink and reset your token from your account page.
+For security, the API is provided over SSL only.  Additionally, you should consider your API OAuth token to be much like a password.  Someone with your token can make changes to your Mavenlink account and perform actions in your name.  If you believe that your token has been compromised, login to Mavenlink and revoke your OAuth token from your account user settings page.
 
 == Contributing to the Mavenlink PHP API Library
 
