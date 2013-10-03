@@ -2,7 +2,7 @@
 
 require '../lib/mavenlink_api.php';
 
-$client = new MavenlinkApi('<oauthTokenHere>', false);
+$client = new MavenlinkApi('<oauthTokenHere>');
 
 // $workspacesJson = $client->getWorkspace(8);
 // print_r("workspaces....");
