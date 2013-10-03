@@ -246,9 +246,9 @@ class MavenlinkApi
 
   function createNew($model, $workspaceId, $params)
   {
-    $params = $this->labelParamKeys($model, $params);
+    $params = $this->labelParamKeys($model, array_merge($params, array('workspace_id' => $workspaceId)));
 
-    $newPath = $model::getWorkspaceResourcesPath($workspaceId);
+    $newPath = $model::getResourcesPath();
     $curl     = $this->createPostRequest($newPath, $this->loginInfo, $params);
     $response = curl_exec($curl);
 
