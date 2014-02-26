@@ -110,12 +110,12 @@ class MavenlinkApi
 
   function getAllParticipantsFromWorkspace($workspaceId)
   {
-    return $this->getJson(Participant::getWorkspaceResourcesPath($workspaceId));
+    return $this->getJson(User::getResourcesPath() . "?participant_in=" . $workspaceId);
   }
 
   function getAllInvoicesFromWorkspace($workspaceId)
   {
-    return $this->getJson(Invoice::getWorkspaceResourcesPath($workspaceId));
+    return $this->getJson(Invoice::getResourcesPath() . "?workspace_id=" . $workspaceId);
   }
 
   function getWorkspaceInvoice($workspaceId, $invoiceId)
@@ -125,7 +125,7 @@ class MavenlinkApi
 
   function getAllPostsFromWorkspace($workspaceId)
   {
-    return $this->getJson(Post::getWorkspaceResourcesPath($workspaceId));
+    return $this->getJson(Post::getResourcesPath() . "?workspace_id=" . $workspaceId);
   }
 
   function createPostForWorkspace($workspaceId, $postParamsArray)
@@ -150,7 +150,7 @@ class MavenlinkApi
 
   function getAllStoriesFromWorkspace($workspaceId)
   {
-    return $this->getJson(Story::getWorkspaceResourcesPath($workspaceId));
+    return $this->getJson(Story::getResourcesPath() . "?workspace_id=" . $workspaceId);
   }
 
   function createStoryForWorkspace($workspaceId, $storyParamsArray)
@@ -175,7 +175,7 @@ class MavenlinkApi
 
   function getAllTimeEntriesFromWorkspace($workspaceId)
   {
-    return $this->getJson(TimeEntry::getWorkspaceResourcesPath($workspaceId));
+    return $this->getJson(TimeEntry::getResourcesPath() . "?workspace_id=" . $workspaceId);
   }
 
   function createTimeEntryForWorkspace($workspaceId, $timeEntryParamsArray)
@@ -200,7 +200,7 @@ class MavenlinkApi
 
   function getAllExpensesFromWorkspace($workspaceId)
   {
-    return $this->getJson(Expense::getWorkspaceResourcesPath($workspaceId));
+    return $this->getJson(Expense::getResourcesPath() . "?workspace_id=" . $workspaceId);
   }
 
   function createExpenseForWorkspace($workspaceId, $expenseParamsArray)
