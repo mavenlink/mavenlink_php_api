@@ -130,7 +130,7 @@ class MavenlinkApi
 
   function createPostForWorkspace($workspaceId, $postParamsArray)
   {
-    return $this->createNew(Post, $workspaceId, $postParamsArray);
+    return $this->createNew('Post', $workspaceId, $postParamsArray);
   }
 
   function getWorkspacePost($workspaceId, $postId)
