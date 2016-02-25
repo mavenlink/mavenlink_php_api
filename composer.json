@@ -1,0 +1,14 @@
+{
+    "name": "mavenlink/mavenlink_php_api",
+    "description": "Mavenlink PHP API Library",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Cantino",
+            "email": "cantino@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
