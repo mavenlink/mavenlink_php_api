@@ -77,4 +77,20 @@ class Post extends MavenlinkApiObject
 {
   public static $path = 'posts';
 }
+
+class CustomFieldSets extends MavenlinkApiObject
+{
+  public static $path = 'custom_field_sets';
+}
+
+class CustomFieldValues extends MavenlinkApiObject
+{
+  public static $path = 'custom_field_values';
+}
+
+class CustomFields extends MavenlinkApiObject
+{
+  public static $path = 'custom_fields';
+}
+
 ?>
