@@ -222,6 +222,34 @@ class MavenlinkApi
   {
     return $this->deleteModel('Expense', $workspaceId, $expenseId);
   }
+  
+    // Field Sets
+  function getCustomFieldSets()
+  {
+    return $this->getJsonForAll('CustomFieldSets');
+  }
+  
+  function getCustomFieldSet($id)
+  {
+    return $this->getShowJsonFor('CustomFieldSets', $id);
+  }
+
+  // Custom field values
+  function getCustomFieldValues($subject = 'Workspace')
+  {
+    return $this->getJsonForAll('CustomFieldValues', $subject);
+  }
+
+  function getCustomFieldValue($id)
+  {
+    return $this->getShowJsonFor('CustomFieldValues', $id);
+  }
+
+  // Custom fields
+  function getCustomFields()
+  {
+    return $this->getJsonForAll('CustomFields');
+  }
 
   function getJsonForAll($model)
   {
