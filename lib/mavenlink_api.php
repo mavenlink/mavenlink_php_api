@@ -223,9 +223,12 @@ class MavenlinkApi
     return $this->deleteModel('Expense', $workspaceId, $expenseId);
   }
 
-  function getJsonForAll($model)
+  function getJsonForAll($model, $queryString=NULL)
   {
     $resourcesPath = $model::getResourcesPath();
+    if ($queryString) {
+      $resourcesPath = $resourcesPath."?".$queryString;
+    }
     return $this->getJson($resourcesPath);
   }
 
