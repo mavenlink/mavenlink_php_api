@@ -22,39 +22,39 @@ class MavenlinkApi
     }
   }
 
-  function getWorkspaces()
+  function getWorkspaces($queryString=NULL)
   {
-    return $this->getJsonForAll('Workspace');
+    return $this->getJsonForAll('Workspace', $queryString);
   }
 
-  function getEvents()
+  function getEvents($queryString=NULL)
   {
-      return $this->getJsonForAll('Event');
+      return $this->getJsonForAll('Event', $queryString);
   }
 
-  function getTimeEntries()
+  function getTimeEntries($queryString=NULL)
   {
-    return $this->getJsonForAll('TimeEntry');
+    return $this->getJsonForAll('TimeEntry', $queryString);
   }
 
-  function getExpenses()
+  function getExpenses($queryString=NULL)
   {
-    return $this->getJsonForAll('Expense');
+    return $this->getJsonForAll('Expense', $queryString);
   }
 
-  function getInvoices()
+  function getInvoices($queryString=NULL)
   {
-    return $this->getJsonForAll('Invoice');
+    return $this->getJsonForAll('Invoice', $queryString);
   }
 
-  function getStories()
+  function getStories($queryString=NULL)
   {
-    return $this->getJsonForAll('Story');
+    return $this->getJsonForAll('Story', $queryString);
   }
 
-  function getUsers()
+  function getUsers($queryString=NULL)
   {
-    return $this->getJsonForAll('User');
+    return $this->getJsonForAll('User', $queryString);
   }
 
   function getTimeEntry($id)
@@ -223,9 +223,12 @@ class MavenlinkApi
     return $this->deleteModel('Expense', $workspaceId, $expenseId);
   }
 
-  function getJsonForAll($model)
+  function getJsonForAll($model, $queryString=NULL)
   {
     $resourcesPath = $model::getResourcesPath();
+    if ($queryString) {
+      $resourcesPath = $resourcesPath."?".$queryString;
+    }
     return $this->getJson($resourcesPath);
   }
 
